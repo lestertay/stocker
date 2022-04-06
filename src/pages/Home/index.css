@@ -1,6 +1,25 @@
 .main-container {
-    height: 100%;
+    height: 100vh;
     padding: 0px 0px 0px 0px;
+    background: rgb(28, 156, 239, 0.03);
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-bg {
+    height: 300px;
+    width: 100vw;
+    background: #1c9cef;
+    text-align: center;
+    padding-top: 110px;
+}
+
+.info-card-container {
+    margin: 10px 0px;
 }
 
 .search-input {
@@ -11,10 +30,20 @@
 
 #custom-input .ant-input-affix-wrapper {
     border-radius: 8px;
-    box-shadow: 0px 8px 20px rgb(0 0 0 / 6%);
+    box-shadow: 0px 8px 20px rgb(0 0 0 / 8%);
     height: 64px;
     border: none;
 }
+
+/* #custom-input .ant-input-affix-wrapper:focus-within {
+    box-shadow: 0px 8px 20px rgb(0 0 0 / 15%);
+    transform: scale(1.03);
+}
+
+#custom-input .ant-input-affix-wrapper:hover {
+    box-shadow: 0px 8px 20px rgb(0 0 0 / 15%);
+    transform: scale(1.03);
+} */
 
 #custom-input .ant-select-selector{
     border:none !important;
@@ -33,17 +62,12 @@
     box-shadow: none !important;
 }
 
+.ant-select-selection-item {
+    overflow: unset !important;
+}
 .divider {
     width: 2px;
     height: 50%;
     margin-right: 24px;
     background: #e7e7e9;
-}
-
-.container-bg {
-    height: 300px;
-    width: 100vw;
-    background: #1c9cef;
-    text-align: center;
-    padding-top: 110px;
 }

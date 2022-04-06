@@ -1,0 +1,18 @@
+.card-container {
+    width: 660px;
+    min-height: 180px;
+    box-shadow: 0px 8px 20px rgb(0 0 0 / 6%);    
+    border-radius: 8px;
+    background: white;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dividerr {
+    width: 1px;
+    height: 12px;
+    margin-right: 12px;
+    margin-left: 12px;
+    background: rgba(130, 131, 132, 0.7);
+}

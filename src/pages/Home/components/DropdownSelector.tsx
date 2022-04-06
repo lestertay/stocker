@@ -20,7 +20,7 @@ const DropdownSelector:React.FC<IDropdownProps> = ({value, onChange}) => {
                     width: 100
                     }}
             >
-                <Select.Option value="Tweet">Tweet</Select.Option>
+                <Select.Option value="Comments">Tweet</Select.Option>
                 <Select.Option value="Handle">Handle</Select.Option>
             </Select>
         </>
