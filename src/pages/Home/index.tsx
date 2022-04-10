@@ -5,6 +5,7 @@ import './index.css';
 import SearchBar from './components/SearchBar';
 import InfoCard from './components/InfoCards';
 import { fetchQueryResult } from '../../server';
+import { Link } from 'react-router-dom';
 
 const {Title, Paragraph} = Typography;
 
@@ -16,6 +17,8 @@ export default function Home(){
     const [queryTime, setQueryTime] = useState(0)
     const [pageNumber, setPageNumber] = useState(1)
     const [totalCount, setTotalCount] = useState<number>(0);
+    const [showComparison, setShowComparison] = useState(false);
+    const [displayResultString, setDisplayResultString] = useState('');
 
     const onPageReset = () => {
         setPageStatus(PageStatus.Loading)
@@ -32,8 +35,14 @@ export default function Home(){
                 const {response, responseHeader} = data
                 setQueryTime(responseHeader.QTime)
                 setTotalCount(response.numFound)
+                
                 const processedResults: ResultsData[] = response.docs.map((r:any): ResultsData => {
                     const predictedEnum = predicatedEnumMap[r.Predicted] ?? Predicted.Unavailable
+                    let imageSrc;
+                    const src = r.Image_Source
+                    if (src) {
+                        imageSrc = src[0]
+                    }
                     return {
                         username: r.UserName,
                         handle: r.Handle,
@@ -43,12 +52,14 @@ export default function Home(){
                         retweets: r.Retweet,
                         predicted: predictedEnum,
                         timestamp: r.TimeStamp,
-
+                        imageSrc
                     } as ResultsData
                 })
                 setResultsData({
                     1: processedResults
                 })
+                setDisplayResultString(searchQuery)
+                setShowComparison(searchParams === 'Comments' && (searchQuery.indexOf("$") === 0))
                 setPageStatus(PageStatus.Ready)
             })
             .catch(error => {
@@ -102,17 +113,18 @@ export default function Home(){
                 setSearchQuery={setSearchQuery}
             />
            {(pageStatus === PageStatus.Ready) && <div className='info-container'>
+                {showComparison && <Link to="/compare" state={{initial: displayResultString}}>Would you like to compare {displayResultString} with another stock?</Link>}
                 <Paragraph>
-                    { totalCount > 0 ? (<span><b>{totalCount}</b> results found, query took <b>{queryTime}ms</b></span>) : (
-                        <span>no results found yet</span>
-                    )}
+                    {totalCount > 0 ? 
+                        (<span><b>{totalCount}</b> results found, query took <b>{queryTime}ms</b></span>) : 
+                        (<span>no results found yet</span>)}
                 </Paragraph>
+                
+               
                 {resultsData[pageNumber].map((v, i) => {
                     return (
                         <div className='info-card-container' key={`${i}`}>
-                            <InfoCard 
-                                {...v}
-                            />
+                            <InfoCard {...v} />
                         </div>
                     )
                 })}

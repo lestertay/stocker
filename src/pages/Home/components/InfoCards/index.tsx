@@ -14,9 +14,10 @@ interface IProps {
     likes: number,
     predicted: Predicted,
     timestamp: string,
+    imageSrc?: string,
 }
 
-const InfoCard: React.FC<IProps> = ({username, handle, comments, replies, likes, retweets, predicted}) => {
+const InfoCard: React.FC<IProps> = ({username, handle, comments, replies, likes, retweets, predicted, imageSrc}) => {
 
     const renderTag = (predicted: Predicted) => {
         switch (predicted) {
@@ -43,6 +44,7 @@ const InfoCard: React.FC<IProps> = ({username, handle, comments, replies, likes,
             <Paragraph>
                 {comments}
             </Paragraph>
+            {imageSrc && <img style={{marginBottom: 8, borderRadius:8}} alt="img" src={imageSrc} />}
             <div style={{
                 display: 'flex', 
                 flexDirection:'row', 

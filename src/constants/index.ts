@@ -26,4 +26,5 @@ export type ResultsData = {
     likes: number,
     predicted: Predicted,
     timestamp: string,
+    imageSrc?: string
 }

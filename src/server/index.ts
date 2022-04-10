@@ -17,3 +17,8 @@ export const fetchHandleSuggestion = async (handle: string) => {
     
     return data.json()
 }
+
+export const fetchAllStockComments = async (query: string): Promise<any> => {
+    const data = await fetch(`http://localhost:8983/solr/stocker/select?indent=true&q.op=OR&q=${query}&rows=1000`)
+    return data.json()
+}

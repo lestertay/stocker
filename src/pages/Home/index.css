@@ -1,7 +1,7 @@
 .main-container {
-    height: 100vh;
     padding: 0px 0px 0px 0px;
     background: rgb(28, 156, 239, 0.03);
+    min-height: 100vh;
 }
 
 .info-container {
